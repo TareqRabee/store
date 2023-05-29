@@ -15,7 +15,7 @@
         <tbody>
             @foreach ($products as $product)
             <tr>
-                <th scope="row">1</th>
+                <th scope="row">{{$product->id}}</th>
                 <td>{{$product->name}}</td>
                 <td>{{$categories[$product->category_id-1]->name}}</td>
                 <td>{{$product->price}}</td>

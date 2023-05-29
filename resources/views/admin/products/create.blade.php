@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="py-3">
-        <form action="{{ url('products/shop') }}" method="post">
+        <form action="{{ url('products/store') }}" method="post">
             @csrf
             <div class="mb-3">
                 <label for="nameFormControlInput" class="form-label">اسم المنتج</label>
@@ -25,8 +25,6 @@
             <div class="mb-3">
                 <label for="descriptionFormControlTextarea" class="form-label">اختر الصنف</label>
                 <select class="select-control" name="category" id="category">
-                    <option value="#"></option>
-
                     @foreach ($categories as $category)
                     <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach

@@ -7,10 +7,16 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $products = Product::all();
-        return view('admin.products.index', compact('products'));
+        $categories = Category::all();
+        return view('admin.products.index', compact('products', 'categories'));
     }
     public function create()
     {
@@ -21,10 +27,11 @@ class ProductController extends Controller
     {
         $product = new Product;
         $product->name=$request->name;
-        $product-> qunantity=$request->qunantity;
+        $product-> quantity=$request->quantity;
         $product-> price=$request->price;
         $product-> category_id=$request->category;
         $product-> description=$request->description;
+        $product-> image="w";
         $product-> save();
         return redirect()->back();
 
@@ -54,9 +61,8 @@ class ProductController extends Controller
 
     }
     public function destroy ($id){
-        Product::find($id)->delete;
+        Product::find($id)->delete();
         return redirect()->back();
-
     }
 
 

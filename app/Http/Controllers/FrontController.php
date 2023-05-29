@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
-   public function index(){
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-    $products=Product::all();
+    public function index()
+    {
+        $products = Product::all();
 
-return view('home.index',compact('products'));
-
-   }
+        return view('home.index', compact('products'));
+    }
 }
