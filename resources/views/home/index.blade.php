@@ -1,7 +1,6 @@
 @extends('layouts.front')
 @section('content')
     <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-    @endsection
 
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
@@ -83,7 +82,11 @@
     </svg>
     <h2 class="fw-normal">{{$product->name}}</h2>
     <p>{{$product->description}}</p>
-    <p><a class="btn btn-secondary" href="#">عرض التفاصيل</a></p>
+    <form action="{{url('orders/create')}}" method="post">
+        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+        <input type="hidden" name="product_id" value="{{$product->id}}">
+        <input class="btn btn-secondary" type="submit" value="طلب">
+    </form>
 </div>
 @endforeach
 
@@ -101,3 +104,4 @@
     <!-- /END THE FEATURETTES -->
 
 </div><!-- /.container -->
+@endsection
